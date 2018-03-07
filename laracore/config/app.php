@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'cache' => false,
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -183,6 +183,11 @@ return [
          */
         Modules\Admin\Providers\AdminServiceProvider::class,
         Modules\Core\Providers\CoreServiceProvider::class,
+        Modules\Core\Providers\SluggableServiceProvider::class,
+        Modules\Page\Providers\PageServiceProvider::class,
+        Modules\Post\Providers\PostServiceProvider::class,
+        Modules\Product\Providers\ProductServiceProvider::class,
+        Modules\Widget\Providers\WidgetServiceProvider::class,
 
     ],
 

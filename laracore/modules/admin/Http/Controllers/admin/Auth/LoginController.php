@@ -46,7 +46,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        // dd(auth('admin')->user());
+        // dd(bcrypt('123123'));
         return view('admin::auth.login');
     }
 

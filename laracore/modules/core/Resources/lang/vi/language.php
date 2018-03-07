@@ -16,5 +16,16 @@ return [
     'add_success' => 'Thêm mới dữ liệu thành công',
     'update_success' => 'Cập nhập dữ liệu thành công',
     'add_new' => 'Thêm mới',
-    'delete_success' => 'Xóa dữ liệu thành công'
+    'delete_success' => 'Xóa dữ liệu thành công',
+    'name' => 'Tên',
+    'published' => 'Xuất bản',
+    'position' => 'Vị trí',
+    'action' => 'Hành động',
+    'description' => 'Mô tả',
+    'content' => 'Nội dung',
+    'categories' => 'Danh mục',
+    'slug' => 'Code',
+    'parent_cate' => 'Danh mục cha',
+    'category_create' => 'Thêm mới danh mục',
+    'category_edit' => 'Chỉnh sửa danh mục'
 ];

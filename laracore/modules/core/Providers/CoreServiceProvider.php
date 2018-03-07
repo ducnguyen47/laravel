@@ -19,6 +19,7 @@ class CoreServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__.'/../Routes/admin.php');
+        $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
         $this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
         $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'core');
         $this->loadViewsFrom(__DIR__.'/../Resources/views/admin', 'core');
@@ -26,9 +27,9 @@ class CoreServiceProvider extends ServiceProvider
         /**
          * Admin path
          */
-        View::share(
-            'admin_path', asset('assets/admin')
-        );
+        View::composer('*', function ($view) {
+            $view->with('admin_path', asset('assets/admin'));
+        });
 
         View::composer('core::layouts.app', function ($view) {
             $view->with('js_available', ['csrfToken' => csrf_token()]);

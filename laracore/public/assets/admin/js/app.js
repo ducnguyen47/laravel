@@ -726,6 +726,14 @@ var App = function() {
 /* Initialize app when page loads */
 $(function(){ App.init(); });
 
+// TINYCMS CONFIGURATION
+tinymce.init({
+    selector: ".editor",
+    plugins: "moxiemanager link image",
+    toolbar: "insertfile link image, code",
+    menubar: true
+});
+
 var deleteItem = function(id, url) {
     axios.delete(url, {
         params: {
@@ -735,5 +743,25 @@ var deleteItem = function(id, url) {
         location.reload();
     }).catch(function(){
         console.log('Xóa thất bại.');
+    })
+}
+
+var updatePublishedItem = function(url, value) {
+    axios.put(url,{
+        published: value
+    }).then(function (res){
+        location.reload();
+    }).catch(function(){
+        console.log('Cập nhập thất bại.');
+    })
+}
+
+var updatePositionItem = function(url, value) {
+    axios.put(url,{
+        pos: value
+    }).then(function (res){
+        location.reload();
+    }).catch(function(){
+        console.log('Cập nhập thất bại.');
     })
 }

@@ -59,7 +59,7 @@ class AdminController extends Controller
         $data = $request->all();
         $this->validate($request, $this->rules($request, $admin));
 
-        $data['published'] = isset($data['published']) ? $data['published'] : 0;
+        $data['published'] = $request->has('published') ? true : false;
         if ($data['password']) {
             $data['password'] = bcrypt($data['password']);
         } else {
