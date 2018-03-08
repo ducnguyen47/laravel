@@ -27,5 +27,14 @@ return [
     'slug' => 'Code',
     'parent_cate' => 'Danh mục cha',
     'category_create' => 'Thêm mới danh mục',
-    'category_edit' => 'Chỉnh sửa danh mục'
+    'category_edit' => 'Chỉnh sửa danh mục',
+    'setting' => 'Cấu hình',
+    'site_name' => 'Tên Website',
+    'site_description' => 'Mô tả Website',
+    'site_phone' => 'Số điện thoại',
+    'site_address' => 'Địa chỉ',
+    'gg_analytics' => 'Google Analytics',
+    'gg_webmastertool' => 'Web master tools',
+    'live_chat' => 'Live chat',
+    'scripts' => 'Scripts',
 ];

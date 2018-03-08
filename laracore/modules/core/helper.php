@@ -64,3 +64,21 @@ function register_sluggable(string $model, string $controller)
 {
     return app('sluggable')->registerController($model, $controller);
 }
+
+function option($key = null)
+{
+    if ($key) {
+        return app()->make(\Modules\Core\Contracts\Option\Option::class)->get($key);
+    }
+    return app()->make(\Modules\Core\Contracts\Option\Option::class);
+}
+
+function check_do_active($links, $display = null)
+{
+    $links = is_array($links) ? $links : [$links];
+    foreach ($links as $key => $link) {
+        if (request()->url() == $link) {
+            return !$display ? 'active open' : 'block';
+        }
+    }
+}

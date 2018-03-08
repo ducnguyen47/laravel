@@ -8,7 +8,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // dd(Auth::guard('admin')->user());
-        return view('core::layouts.app');
+        theme()->setTitle('Dashboard');
+        breadcrumb()->add('Dashboard');
+        theme()->setTheme('core::layouts.app');
+        return theme()->render();
     }
 }

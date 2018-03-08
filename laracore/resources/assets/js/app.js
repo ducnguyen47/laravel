@@ -17,6 +17,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 Vue.component('image-box', require('./components/general/imageBox.vue'));
+Vue.component('images-box', require('./components/general/imagesBox.vue'));   
 
 const app = new Vue({
     el: '#app'

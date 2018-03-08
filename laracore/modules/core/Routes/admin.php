@@ -9,4 +9,7 @@ Route::group([
     'as' => 'admin.'
 ], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
+
+    Route::get('settings', 'SettingController@index')->name('settings');
+    Route::post('settings/update', 'SettingController@update')->name('settings.update');
 });

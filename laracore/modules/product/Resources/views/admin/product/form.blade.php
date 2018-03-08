@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="app">
         <div class="col-md-8">
             <!-- Basic Form Elements Block -->
             <div class="block">
@@ -38,6 +38,7 @@
                     </div>
                 </div>
             </div>
+            <images-box lable="Images" input-name="images" data="{{ @$product->images ? json_encode(@$product->images) : '' }}"></images-box>
         </div>
         <div class="col-md-4">
             <div class="block">
@@ -103,7 +104,7 @@
                 </div>
             </div>
             <div id="app">
-                <image-box input-name="featured_image" data="{{ @$product->featured_image }}"></image-box>   
+                <image-box label="{{ trans('core::language.image') }}" input-name="featured_image" data="{{ @$product->featured_image }}"></image-box>
             </div>
         </div>
     </div>

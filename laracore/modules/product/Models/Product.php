@@ -17,6 +17,10 @@ class Product extends Model
         'name', 'description', 'content', 'admin_id', 'featured_image', 'published', 'pos', 'images', 'price', 'discount', 'sku'
     ];
 
+    protected $casts = [
+        'images' => 'json'
+    ];
+
     public function admin()
     {
         return $this->belongsTo(\Modules\Admin\Models\Admin::class);

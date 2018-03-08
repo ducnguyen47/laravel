@@ -14,7 +14,6 @@
                         <th>{{ trans('core::language.slug') }}</th>
                         <th>{{ trans('core::language.published') }}</th>
                         <th class="text-center">{{ trans('core::language.action') }}</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

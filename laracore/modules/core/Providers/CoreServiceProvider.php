@@ -7,6 +7,10 @@ use Modules\Core\Contracts\Breadcrumb\BreadcrumbContract;
 use Modules\Core\Contracts\Breadcrumb\Breadcrumb;
 use Modules\Core\Contracts\Template\TemplateContract;
 use Modules\Core\Contracts\Template\Template;
+use Modules\Core\Contracts\Option\Option;
+use Modules\Core\Contracts\Option\OptionEloquentRepository;
+use Modules\Core\Contracts\Option\OptionCacheRepository;
+use Modules\Core\Models\Option as OptionModel;
 use View;
 
 class CoreServiceProvider extends ServiceProvider
@@ -20,7 +24,7 @@ class CoreServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/../Routes/admin.php');
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
-        $this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
         $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'core');
         $this->loadViewsFrom(__DIR__.'/../Resources/views/admin', 'core');
 
@@ -50,5 +54,12 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->alias(TemplateContract::class, 'templates');
         $this->app->singleton(TemplateContract::class, Template::class);
+
+        $this->app->bind(Option::class, function ($app) {
+            if ($this->app['config']['app.cache']) {
+                return new OptionCacheRepository(new OptionEloquentRepository(new OptionModel()));
+            }
+            return new OptionEloquentRepository(new OptionModel());
+        });
     }
 }

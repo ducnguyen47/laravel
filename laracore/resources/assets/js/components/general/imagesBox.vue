@@ -1,17 +1,22 @@
 <template>
     <div class="block">
         <div class="block-title">
-            <h2>Image</h2>
+            <h2 v-text="lable"></h2>
         </div>
-        <div class="image-box">
-            <div @click="chooseImage()">
-                <img v-if="imgPath" :src="imgPath">
+        <div v-if="imgsPath" v-for="(item,index) in imgsPath" class="image-box">
+            <div>
+                <img v-if="item" :src="item.path">
                 <i v-else class="fa fa-picture-o" aria-hidden="true"></i>
-                 <input type="hidden" :name="inputName" :value="imgPath">
             </div>
-            <button @click="removeImg()" v-if="imgPath" class="btn btn-default remove-img" type="button">
+            <button @click="removeImg(index)" v-if="item" class="btn btn-default remove-img" type="button">
                 <i class="fa fa-times" aria-hidden="true"></i> Xóa
             </button>
+        </div>
+        <input v-if="imgsPath" v-for="(item,index) in imgsPath" type="hidden" :name="`${inputName}[${index}][path]`" :value="item.path">
+        <div class="image-box">
+            <div @click="chooseImage()">
+                <i class="fa fa-picture-o" aria-hidden="true"></i>
+            </div>
         </div>
     </div>
 </template>
@@ -21,14 +26,14 @@
         props: ['inputName', 'data', 'lable'],
         data() {
             return {
-                imgPath: '',
+                imgsPath: [],
             }
         },
         mounted() {
-            if (this.data) {
-                this.imgPath = this.data;
+            if (this.data.length > 0) {
+                this.imgsPath = JSON.parse(this.data);
             }
-            if (this.lable == '') {
+            if (this.lable === '') {
                 this.lable = 'Image';
             }
         },
@@ -36,13 +41,15 @@
             chooseImage() {
                 moxman.browse({
                     oninsert: args => {
-                        this.imgPath = args.files[0].url;
-                        args.preventDefault(); 
+                        args.files.forEach((value) => {
+                            this.imgsPath.push(value);
+                            console.log(this.imgsPath);
+                        });
                     }
                 });
             },
-            removeImg() {
-                this.imgPath = '';
+            removeImg(index) {
+                this.imgsPath.splice(index,1);
             }
         }
     }
@@ -50,11 +57,13 @@
 
 <style scoped>
     .image-box {
+        width: 25%;
         margin: 5px;
         border: 2px dashed #EEE;
         cursor: pointer;
         position: relative;
-        padding-top: 75%;
+        padding-top: 25%;
+        display: inline-block;
     }
     .image-box i.fa-picture-o {
         font-size: 30px;
