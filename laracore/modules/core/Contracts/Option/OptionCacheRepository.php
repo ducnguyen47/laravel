@@ -2,8 +2,6 @@
 
 namespace Modules\Core\Contracts\Option;
 
-use Modules\Core\Modules\Option;
-
 class OptionCacheRepository implements Option
 {
     private $cache;
@@ -13,7 +11,7 @@ class OptionCacheRepository implements Option
     public function __construct(OptionEloquentRepository $repository)
     {
         $this->repository = $repository;
-        $this->cache = $cache;
+        $this->cache = app('cache');
     }
 
     public function save($key, $value)
@@ -23,7 +21,7 @@ class OptionCacheRepository implements Option
 
     public function get($key)
     {
-        return $this->cache->remember('option::{$key}', function () use ($key) {
+        return $this->cache->remember('option::'.$key, 150, function () use ($key) {
             return $this->repository->get($key);
         });
     }

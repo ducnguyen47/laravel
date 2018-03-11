@@ -14,6 +14,6 @@ class Widget extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'content', 'published'
+        'name', 'slug', 'content', 'published', 'type'
     ];
 }

@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::with('sluggable')->get();
         breadcrumb()->add(trans('post::language.post_category'), route('post.categories.index'));
         breadcrumb()->add(trans('core::language.list'));
 

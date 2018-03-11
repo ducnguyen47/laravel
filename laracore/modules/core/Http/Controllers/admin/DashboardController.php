@@ -2,7 +2,7 @@
 namespace Modules\Core\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Auth;
+use Cache;
 
 class DashboardController extends Controller
 {

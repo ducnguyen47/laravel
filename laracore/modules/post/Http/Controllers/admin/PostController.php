@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('sluggable')->get();
         breadcrumb()->add(trans('post::language.post'), route('posts.index'));
         breadcrumb()->add(trans('core::language.list'));
         theme()->setTitle(trans('post::language.post'));

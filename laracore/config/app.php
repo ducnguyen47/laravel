@@ -164,6 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        Harimayco\Menu\MenuServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -188,6 +189,9 @@ return [
         Modules\Post\Providers\PostServiceProvider::class,
         Modules\Product\Providers\ProductServiceProvider::class,
         Modules\Widget\Providers\WidgetServiceProvider::class,
+        Modules\Core\Providers\WebsiteServiceProvider::class,
+        Modules\Core\Providers\MenuServiceProvider::class,
+
 
     ],
 
@@ -237,7 +241,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Menu' => Harimayco\Menu\Facades\Menu::class,
     ],
 
 ];

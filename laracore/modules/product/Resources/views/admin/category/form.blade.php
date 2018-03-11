@@ -34,7 +34,7 @@
                                 <option value="0">{{ trans('core::language.parent_cate') }}</option>
                                 @foreach($categories as $value)
                                     @if(@$category->id != $value->id)
-                                        <option {{ $categories->contains(@$category->parent_id) ? 'selected=""' : '' }} value="{{ $value->id }}">{{ $value->name }}</option>
+                                        <option {{ $value->id == $category->parent_id ? 'selected=""' : '' }} value="{{ $value->id }}">{{ $value->name }}</option>
                                     @endif
                                 @endforeach
                             </select>

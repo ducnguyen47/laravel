@@ -46,7 +46,7 @@ class Manager implements SlugManagerContract
         if (!$slug || !$sluggable || ! isset($this->sluggables[$sluggable->object_type])) {
             throw new HttpException(404, 'Slug is not found.');
         }
-        
+
         return $this->app->call($this->sluggables[$sluggable->object_type], [$sluggable]);
     }
 }

@@ -706,10 +706,23 @@ var App = function() {
         page.prop('class', pageCls);
     };
 
+    var tinymceSetup = function() {
+        // TINYCMS CONFIGURATION
+        tinymce.init({
+              selector: '.editor',
+              plugins:  [ "moxiemanager link image advlist autolink autosave link image lists charmap print preview hr anchor pagebreak spellchecker", "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking", "table contextmenu directionality emoticons template textcolor paste textcolor colorpicker textpattern" ],
+              toolbar1: 'insertfile code link image code formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+              image_advtab: true,
+              verify_html: false,
+              menubar: true
+        });
+    }
+
     return {
         init: function() {
             uiInit(); // Initialize UI Code
             pageLoading(); // Initialize Page Loading
+            tinymceSetup(); // Tinymce configuable
         },
         sidebar: function(mode, extra) {
             handleSidebar(mode, extra); // Handle sidebars - access functionality from everywhere
@@ -719,21 +732,14 @@ var App = function() {
         },
         pagePrint: function() {
             handlePrint(); // Print functionality
-        }
+        },
     };
 }();
 
 /* Initialize app when page loads */
 $(function(){ App.init(); });
 
-// TINYCMS CONFIGURATION
-tinymce.init({
-    selector: ".editor",
-    plugins: "moxiemanager link image",
-    toolbar: "insertfile link image, code",
-    menubar: true
-});
-
+// Delete item by id, url parameters
 var deleteItem = function(id, url) {
     axios.delete(url, {
         params: {
@@ -743,9 +749,10 @@ var deleteItem = function(id, url) {
         location.reload();
     }).catch(function(){
         console.log('Xóa thất bại.');
-    })
+    });
 }
 
+// Update published item by url, value parameters
 var updatePublishedItem = function(url, value) {
     axios.put(url,{
         published: value
@@ -756,6 +763,7 @@ var updatePublishedItem = function(url, value) {
     })
 }
 
+// Update position item by url, value parameters
 var updatePositionItem = function(url, value) {
     axios.put(url,{
         pos: value

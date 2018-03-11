@@ -31,10 +31,11 @@ class WidgetController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, $this->rules($request));
-        $data = $request->all();
-        $data['slug'] = makeSlug($data['name']);
+        $this->validate($request, $this->rules());
 
+        $data = $request->all();
+        $data['content'] = is_array($data['content']) ? json_encode($data['content']) : $data['content'];
+        $data['slug'] = '['.makeSlug($data['name']).']';
         $widget = new widget($data);
         $widget->save();
 
@@ -56,7 +57,9 @@ class WidgetController extends Controller
     {
         $data = $request->all();
         if (!$request->wantsJson()) {
-            $this->validate($request, $this->rules($request, $widget));
+            $this->validate($request, $this->rules());
+            $data['slug'] = '['.makeSlug($data['name']).']';
+            $data['content'] = is_array($data['content']) ? json_encode($data['content']) : $data['content'];
             $data['published'] = $request->has('published') ? true : false;
         }
         $widget->update($data);
@@ -77,10 +80,10 @@ class WidgetController extends Controller
         }
         return back();
     }
-    protected function rules($request, $item = null)
+    protected function rules()
     {
         return [
-            'name' => 'required|max:191'
+            'name' => 'required'
         ];
     }
 }

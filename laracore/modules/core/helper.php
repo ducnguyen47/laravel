@@ -75,10 +75,17 @@ function option($key = null)
 
 function check_do_active($links, $display = null)
 {
-    $links = is_array($links) ? $links : [$links];
-    foreach ($links as $key => $link) {
-        if (request()->url() == $link) {
-            return !$display ? 'active open' : 'block';
-        }
+    if (request()->is($links)) {
+        return !$display ? 'active open' : 'block';
     }
+}
+
+function seo()
+{
+    return app('seo');
+}
+
+function menu($slug)
+{
+    return app()->make(Modules\Core\Repositories\MenuRepository::class)->find($slug);
 }

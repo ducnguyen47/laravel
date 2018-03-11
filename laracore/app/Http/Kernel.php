@@ -37,6 +37,10 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+        'frontend' => [
+            \App\Http\Middleware\RenderWidget::class,
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',

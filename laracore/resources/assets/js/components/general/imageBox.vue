@@ -36,7 +36,7 @@
             chooseImage() {
                 moxman.browse({
                     oninsert: args => {
-                        this.imgPath = args.files[0].url;
+                        this.imgPath = args.files[0].path;
                         args.preventDefault(); 
                     }
                 });

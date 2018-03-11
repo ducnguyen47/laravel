@@ -15,11 +15,21 @@ class SettingController extends Controller
         return theme()->render();
     }
 
+    public function template()
+    {
+        theme()->setTitle(trans('core::language.template'));
+        breadcrumb()->add(trans('core::language.template'), route('admin.settings.template'));
+        breadcrumb()->add(trans('core::language.template'));
+        theme()->setTheme('core::setting.template');
+        return theme()->render();
+    }
+
     public function update(Request $request)
     {
         $data = $request->except(['_token']);
 
         foreach ($data as $key => $value) {
+            $value = is_array($value) ? json_encode($value) : $value;
             option()->save($key, $value);
         }
 

@@ -3,6 +3,10 @@
 namespace Modules\Page\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\Page\Models\Page;
+use Modules\Page\Repositories\PageRepository;
+use Modules\Page\Repositories\PageCacheRepository;
+use Modules\Page\Repositories\PageEloquentRepository;
 
 class PageServiceProvider extends ServiceProvider
 {
@@ -18,6 +22,8 @@ class PageServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'page');
         $this->loadViewsFrom(__DIR__.'/../Resources/views/admin', 'page');
 
+        require_once __DIR__ . '/../helper.php';
+
         register_sluggable('Modules\Page\Models\Page', 'Modules\Page\Http\Controllers\Web\PageController@index');
     }
 
@@ -28,6 +34,11 @@ class PageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        require_once __DIR__ . '/../helper.php';
+        $this->app->bind(PageRepository::class, function ($app) {
+            if ($app['config']['app.cache']) {
+                return new PageCacheRepository(new PageEloquentRepository(new Page()));
+            }
+            return new PageEloquentRepository(new Page());
+        });
     }
 }

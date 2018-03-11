@@ -37,4 +37,6 @@ return [
     'gg_webmastertool' => 'Web master tools',
     'live_chat' => 'Live chat',
     'scripts' => 'Scripts',
+    'type' => 'Loại',
+    'template' => 'Giao diện'
 ];

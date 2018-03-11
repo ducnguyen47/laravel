@@ -4159,3 +4159,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
 .table-responsive table thead th {
     font-size: 14px;
 }
+
+.websiteSetting .image-box {
+    width: 15% !important;
+    padding-top: 15% !important;
+}

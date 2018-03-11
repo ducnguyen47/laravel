@@ -2,9 +2,8 @@
  <html class="no-js" lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Login</title>
-        <meta name="description" content="ProUI is a Responsive Bootstrap Admin Template created by pixelcave and published on Themeforest.">
-        <meta name="author" content="pixelcave">
+        <title>Login - {{ option('site_name') }}</title>
+        <meta name="author" content="Ducnguyen">
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
         @include('core::layouts.header')
@@ -13,7 +12,7 @@
         <img src="assets/admin/img/placeholders/backgrounds/login_full_bg.jpg" alt="Login Full Background" class="full-bg animation-pulseSlow">
         <div id="login-container" class="animation-fadeIn">
             <div class="login-title text-center">
-                <h1><i class="gi gi-flash"></i> <strong>CMS</strong><br><small>Please <strong>Login</strong> or <strong>Register</strong></small></h1>
+                <h1><strong>{{ option('site_name') }}</strong><br></h1>
             </div>
             <div class="block push-bit">
                 <form action="{{ route('login') }}" method="post" class="form-horizontal form-bordered form-control-borderless">
@@ -50,12 +49,6 @@
                         </div>
                         <div class="col-xs-8 text-right">
                             <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Login to Dashboard</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12 text-center">
-                            <a href="javascript:void(0)" id="link-reminder-login"><small>Forgot password?</small></a> -
-                            <a href="javascript:void(0)" id="link-register-login"><small>Create a new account</small></a>
                         </div>
                     </div>
                 </form>

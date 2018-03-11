@@ -26,7 +26,7 @@ class SluggableCacheRepository implements SlugRepository
      */
     public function getBySlug(string $slug)
     {
-        return $this->cache->remember("sluggables::{$slug}", 150, function () use ($slug) {
+        return $this->cache->remember("sluggables::".$slug, 150, function () use ($slug) {
             return $this->repository->getBySlug($slug);
         });
     }

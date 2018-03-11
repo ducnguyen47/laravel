@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('sluggable')->get();
         breadcrumb()->add(trans('product::language.product'), route('products.index'));
         breadcrumb()->add(trans('core::language.list'));
         theme()->setTitle(trans('product::language.product'));

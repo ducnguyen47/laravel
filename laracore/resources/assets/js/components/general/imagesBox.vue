@@ -32,10 +32,12 @@
         mounted() {
             if (this.data.length > 0) {
                 this.imgsPath = JSON.parse(this.data);
+                console.log(this.imgsPath);
             }
             if (this.lable === '') {
                 this.lable = 'Image';
             }
+
         },
         methods: {
             chooseImage() {
@@ -43,7 +45,6 @@
                     oninsert: args => {
                         args.files.forEach((value) => {
                             this.imgsPath.push(value);
-                            console.log(this.imgsPath);
                         });
                     }
                 });

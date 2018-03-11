@@ -26,6 +26,7 @@
                             <td><input onchange="updatePositionItem('{{ route('products.update', $item->id) }}', this.value)" type="number" min="1" class="form-control" value="{{ $item->pos }}"></td>
                             <td class="text-center">
                                 <div class="btn-group">
+                                    <a target="_blank" href="{{ $item->link }}" data-toggle="tooltip" title="" class="btn btn-xs btn-default"><i class="fa fa-globe" aria-hidden="true"></i></a>
                                     <a href="{{ route('products.edit', $item->id) }}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
                                     <a onclick="deleteItem('{{ $item->id }}', '{{ route('products.destroy', $item->id) }}');" href="javascript:void(0);" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
                                 </div>

@@ -18,6 +18,7 @@ class CreateWidgetsTable extends Migration
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->longText('content')->nullable();
+            $table->string('type')->nullable();
             $table->boolean('published')->default(false);
             $table->timestamps();
         });

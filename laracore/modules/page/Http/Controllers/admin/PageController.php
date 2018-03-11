@@ -9,7 +9,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        $pages = Page::all();
+        $pages = Page::with('sluggable')->get();
         breadcrumb()->add(trans('page::language.page'), route('pages.index'));
         breadcrumb()->add(trans('core::language.list'));
 
